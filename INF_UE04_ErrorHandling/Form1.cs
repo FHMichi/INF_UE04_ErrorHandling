@@ -28,12 +28,31 @@ namespace INF_UE04_ErrorHandling
                 a = Convert.ToInt32(txtA.Text);
                 b = Convert.ToInt32(txtB.Text);
 
-                c = a / b;
+                c = a / b+1;
                 lblC.Text = c.ToString();
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Falsches Eingabeformat!");
+            }
+            catch (DivideByZeroException)
+            {
+                MessageBox.Show("Division durch 0 nicht möglich! ");
+            }
+            catch (OverflowException)
+            {
+                MessageBox.Show("Zahl zu groß !");
             }
             catch (Exception e1)
             {
                 MessageBox.Show("Fehler: \n" + e1.Message);
+            }
+            //Wird nach ausgelöstem Fehler Final ausgeführt 
+            finally
+            {
+                //Markiert die Zeile in Box A
+                txtA.SelectAll(); 
+                txtA.Focus();
             }
             
             
